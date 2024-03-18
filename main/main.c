@@ -20,7 +20,7 @@ const uint LED_1_OLED = 20;
 const uint LED_2_OLED = 21;
 const uint LED_3_OLED = 22;
 
-void oled1_btn_led_init(void) {
+void oled1_btn_led_init(void) { // função que inicia os LEDs do OLED e os botões 
     gpio_init(LED_1_OLED);
     gpio_set_dir(LED_1_OLED, GPIO_OUT);
 
@@ -43,7 +43,7 @@ void oled1_btn_led_init(void) {
     gpio_pull_up(BTN_3_OLED);
 }
 
-void oled1_demo_1(void *p) {
+void oled1_demo_1(void *p) { // função demo do display OLED
     printf("Inicializando Driver\n");
     ssd1306_init();
 
@@ -94,7 +94,7 @@ void oled1_demo_1(void *p) {
     }
 }
 
-void oled1_demo_2(void *p) {
+void oled1_demo_2(void *p) { // demo dos prints no display 
     printf("Inicializando Driver\n");
     ssd1306_init();
 
@@ -127,7 +127,9 @@ void oled1_demo_2(void *p) {
 int main() {
     stdio_init_all();
 
-    xTaskCreate(oled1_demo_2, "Demo 2", 4095, NULL, 1, NULL);
+    xTaskCreate(oled1_demo_2, "Demo 2", 4095, NULL, 1, NULL); // criação das tarefas
+    // xTaskCreate(oled1_demo_1, "Demo 1", 4095, NULL, 1, NULL);
+
 
     vTaskStartScheduler();
 
