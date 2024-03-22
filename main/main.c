@@ -92,6 +92,11 @@ void oled_task(void *p) {
                 gfx_show(&disp);
                 vTaskDelay(pdMS_TO_TICKS(50));
             }
+            else{
+                gfx_clear_buffer(&disp);
+                gfx_draw_string(&disp, 0, 0, 1, "ERRO: Sem sinal");
+                gfx_show(&disp);
+            }
         }
     }
 }
