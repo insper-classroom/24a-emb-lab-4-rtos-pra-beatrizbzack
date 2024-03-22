@@ -65,8 +65,9 @@ void oled_task(void *p) {
             if (xQueueReceive(xQueue_distance, &distance, pdMS_TO_TICKS(50))) {
                 char distance_str[20];
                 gfx_clear_buffer(&disp);
-                snprintf(distance_str, sizeof(distance_str), "%.2f", distance);
+                snprintf(distance_str, sizeof(distance_str), "Distancia: %.2f cm", distance); // ajusta o tamanho da string para ficar dentro dos limites
                 gfx_draw_string(&disp, 0, 0, 1, distance_str);
+                gfx_draw_line(&disp, 15, 27, distance, 27);
                 gfx_show(&disp);
                 vTaskDelay(pdMS_TO_TICKS(50));
             }
